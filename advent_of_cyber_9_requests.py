@@ -22,18 +22,19 @@ while(next != 'end'):
     next = str(json_response["next"]).encode('ascii')
     value = str(json_response["value"]).encode('ascii')
 
-    print('Next path to take is: {}'.format(next))
-    print('Value to be added is {}'.format(value))
+    if next == 'end' or value == 'end':
+        print('Flag is currently: {}'.format(flag))
+        break
+    else:
+        print('Next path to take is: {}'.format(next))
+        print('Value to be added is {}'.format(value))
 
-    # Append value key's value to flag
-    flag += value
+        # Append value key's value to flag
+        flag += value
 
-    # Change the path variable's value to the next key value
-    path = '/' + next
+        # Change the path variable's value to the next key value
+        path = '/' + next
 
-    print('Flag is currently: {}'.format(flag))
-
-# TODO:
-# Break when "end" is received
-
+        print('Flag is currently: {}'.format(flag))
+    
 # Manually going through each link, the flag is sCrIPtKiDd
