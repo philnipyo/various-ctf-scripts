@@ -6,7 +6,7 @@
 import requests
 
 # String to be printed after "end" is reached
-final = ''
+flag = ''
 
 path = '/'
 host = 'http://10.10.169.100:3000'
@@ -25,14 +25,15 @@ while(next != 'end'):
     print('Next path to take is: {}'.format(next))
     print('Value to be added is {}'.format(value))
 
-    # Append value key's value to final
-    final += value
+    # Append value key's value to flag
+    flag += value
 
     # Change the path variable's value to the next key value
     path = '/' + next
 
+    print('Flag is currently: {}'.format(flag))
+
 # TODO:
-# Add a print statement displaying what final looks like after every request
 # Break when "end" is received
 
 # Manually going through each link, the flag is sCrIPtKiDd
