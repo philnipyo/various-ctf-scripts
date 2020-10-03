@@ -5,8 +5,8 @@
 
 import requests
 
-final = '123456'
-next = ''
+# String to be printed after "end" is reached
+final = ''
 
 path = '/'
 host = 'http://10.10.169.100:3000'
@@ -14,24 +14,25 @@ host = 'http://10.10.169.100:3000'
 while(next != 'end'):
     # Create response variable to store requests.get's results
     response = requests.get(host + path)
-    print(response)
-    # status_code = response.status_code
-    # print(status_code)
+
     # Retrieve JSON object from host + path
     json_response = response.json()
-    print(json_response)
-    # Convert JSON object from unicode to ASCII
-    # json_response needs to be converted to str?
-    converted_response = str(json_response).encode('ascii')
-    print(converted_response)
-    text = response.text
-    print(text.next)
-    print()
 
+    # Initialize next and value variables to store the JSON object values as strings
+    next = str(json_response["next"]).encode('ascii')
+    value = str(json_response["value"]).encode('ascii')
 
-# print(next)
+    print('Next path to take is: {}'.format(next))
+    print('Value to be added is {}'.format(value))
 
+    # Append value key's value to final
+    final += value
 
+    # Change the path variable's value to the next key value
+    path = '/' + next
 
-# Append value key's value to value
-# Change the path variable's value to the next key value
+# TODO:
+# Add a print statement displaying what final looks like after every request
+# Break when "end" is received
+
+# Manually going through each link, the flag is sCrIPtKiDd
