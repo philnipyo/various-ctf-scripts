@@ -23,12 +23,12 @@ while(next != 'end'):
     value = str(json_response["value"]).encode('ascii')
 
     if next == 'end' or value == 'end':
-        print('Flag is currently: {}'.format(flag))
+        print('Flag\'s final form is: {}'.format(flag))
         break
     else:
-        print('Next path to take is: {}'.format(next))
-        print('Value to be added is {}'.format(value))
-
+        print('Retrieved {} and adding it to the flag'.format(value))
+	    print('Retrieving next flag letter from path: /{}'.format(next))
+        
         # Append value key's value to flag
         flag += value
 
