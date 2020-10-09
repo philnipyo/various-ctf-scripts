@@ -13,8 +13,26 @@
 # Assumption is we are working with the unzipped downloaded file from TryHackMe
 
 # Import libraries to zip/unzip files and to read/capture metadata from said files
+import os, zipfile
 # Define variables to serve as counters for the number of files and number of files containing Version: 1.1 metadata
-# Loop through each subfolder and unzip its contents
+num_files = 0
+num_meta = 0
+
+# Create output directory 
+if not os.path.exists("output"):
+    os.mkdir("output")
+
+# Loop through each subfolder
+# os.walk() generates a 3-tuple for each directory it finds containing dirpath, dirnames, and filenames 
+for dirpath, dirnames, files in os.walk('.'):
+    for file_name in files:
+        if file_name.endswith('.zip'):
+            print(file_name)
+            # zipped files can start being interacted with here
+        else:
+            # Ignore files that don't have .zip extension
+            continue
+
 # Increment the number of files variable for each file unzipped
 # Extract the metadata of each file
 # Increment the metadata variable for each file containing Version 1.1; otherwise continue the loop
