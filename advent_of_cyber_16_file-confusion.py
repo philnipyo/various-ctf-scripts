@@ -22,7 +22,7 @@ num_meta = 0
 if not os.path.exists("output"):
     os.mkdir("output")
 
-# Loop through each subfolder
+# Loop through each zipped subfolder
 # os.walk() generates a 3-tuple for each directory it finds containing dirpath, dirnames, and filenames 
 for dirpath, dirnames, files in os.walk('.'):
     for file_name in files:
@@ -34,17 +34,23 @@ for dirpath, dirnames, files in os.walk('.'):
                     # Still need to increment per file
                     # Possibly use the single extract function?
                     zip.extractall("output")
-                    print('Done!')
+                    print('Done! \n')
             except:
                 print('An error occured?!')
         else:
             # Ignore files that don't have .zip extension
             continue
 
+# Loop through 
+for dirpath, dirnames, files in os.walk("output"):
+    for file in files:
+        # Increment the number of files variable for each extracted text file inside the output directory
+        num_files += 1
+
+# Print the number of files in the output directory
+print("{} files in the output directory.".format(num_files))
 
 # TODO:
-# Increment the number of files variable for each file unzipped
 # Extract the metadata of each file
 # Increment the metadata variable for each file containing Version 1.1; otherwise continue the loop
-# Print the values for both the number of files and metadata variable at the end of the loop
 # Include a separate function to search for and display the file containing any resemblance of a password
