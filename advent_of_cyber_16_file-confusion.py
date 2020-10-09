@@ -27,12 +27,22 @@ if not os.path.exists("output"):
 for dirpath, dirnames, files in os.walk('.'):
     for file_name in files:
         if file_name.endswith('.zip'):
-            print(file_name)
-            # zipped files can start being interacted with here
+            try:
+                with zipfile.ZipFile(file_name, 'r') as zip:
+                    print('Extracting files from {} into the output directory.'.format(file_name))
+                    # Extract contents of zipped file
+                    # Still need to increment per file
+                    # Possibly use the single extract function?
+                    zip.extractall("output")
+                    print('Done!')
+            except:
+                print('An error occured?!')
         else:
             # Ignore files that don't have .zip extension
             continue
 
+
+# TODO:
 # Increment the number of files variable for each file unzipped
 # Extract the metadata of each file
 # Increment the metadata variable for each file containing Version 1.1; otherwise continue the loop
